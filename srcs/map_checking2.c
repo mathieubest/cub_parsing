@@ -6,7 +6,7 @@
 /*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:03:35 by mbest             #+#    #+#             */
-/*   Updated: 2024/09/23 16:39:50 by mbest            ###   ########.fr       */
+/*   Updated: 2024/09/23 19:47:51 by mbest            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ void	ft_copy_file(char *filename, t_data *d)
 	// }
 	
 	ft_copy_map_info(&div, filename, d);
-	printing_map(d->i_map);
+	// printing_map(d->i_map);
 	printf("-------------------------------------------------\n");
 	ft_copy_map(num_lines, &div, filename, d);
-	printing_map(d->map);
+	// printing_map(d->map);
 	// exit(0);
 	// close(fd);
 }
