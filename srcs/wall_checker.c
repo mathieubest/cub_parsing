@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:56:20 by mbest             #+#    #+#             */
-/*   Updated: 2024/09/22 18:13:10 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/09/23 17:10:39 by mbest            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int ft_check_top_to_bottom(t_data *d, int height, int width)
 	while (j < width)
 	{
 		i = 0;
-		wall_found_after_tile = 7;
+		wall_found_after_tile = -1;
 		zero_flag = 0;
 		wall_flag = 0;
 		while(i < height)
@@ -54,6 +54,11 @@ int ft_check_top_to_bottom(t_data *d, int height, int width)
 			{
 				if (d->map[i][j] == ' ')
 					wall_flag = 0;
+				if (is_player_pos(d->map, i, j))
+				{
+					if (i == 0 || i == height - 1 || j == 0 || j == width - 1)
+						return (0);
+				}
 				i++;
 			}
 			else if (d->map[i][j] == '0' && wall_flag == 1)
@@ -93,7 +98,7 @@ int ft_check_left_to_right(t_data *d, int height, int width)
 	while (i < height)
 	{
 		j = 0;
-		wall_found_after_tile = 7;
+		wall_found_after_tile = -1;
 		zero_flag = 0;
 		wall_flag = 0;
 		while (j < width)
@@ -102,6 +107,11 @@ int ft_check_left_to_right(t_data *d, int height, int width)
 			{
 				if (d->map[i][j] == ' ')
 					wall_flag = 0;
+				if (is_player_pos(d->map, i, j))
+				{
+					if (i == 0 || i == height - 1 || j == 0 || j == width - 1)
+						return (0);
+				}
 				j++;
 			}
 			else if (d->map[i][j] == '0' && wall_flag == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   support2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:39:39 by mbest             #+#    #+#             */
-/*   Updated: 2024/09/22 20:55:36 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/09/23 15:21:44 by mbest            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,16 @@ int	ft_strlen_nl(const char *str)
 	return (i);
 }
 
+
 int	get_number_lines(char *filename, int *div)
 {
 	int		fd;
 	int		lines;
 	char	*line;
+	int flag;
 
     lines = 0;
+	flag = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
@@ -67,11 +70,16 @@ int	get_number_lines(char *filename, int *div)
 	}
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		if (!is_start_map(line))
-			(*div)++;
-		free(line);
+		if (is_start_map(line) && !flag)
+		{
+			*div = lines;
+			flag = 1;
+		}
 		lines++;
+		free(line);
 	}
 	close(fd);
     return(lines);
 }
+//! Modify get_next_line to catch the last empty line
+//! map3.cub should return 21 not 20

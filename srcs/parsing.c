@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 19:33:52 by mbest             #+#    #+#             */
-/*   Updated: 2024/09/22 19:23:01 by mathieu          ###   ########.fr       */
+/*   Updated: 2024/09/23 17:12:39 by mbest            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_parsing(int ac, char *filename, t_data *d)
 	ft_check_permission(filename);
 	ft_check_extension(filename);
 	ft_copy_file(filename, d); //! EXIT CLEANLY STARTING HERE + FREEING AT THE END OF PARSING
-	// ft_check_valid_info(d);
+	ft_check_valid_info(d);
 	ft_check_valid_map(d);
 	return (1);
 }
