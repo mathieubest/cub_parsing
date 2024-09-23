@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 19:33:52 by mbest             #+#    #+#             */
-/*   Updated: 2024/07/04 17:48:58 by mbest            ###   ########.fr       */
+/*   Updated: 2024/09/22 19:23:01 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,12 @@ int	ft_parsing(int ac, char *filename, t_data *d)
 
 int	main(int ac, char **av)
 {
-	(void)ac;
 	t_data d;
 
 	if (!ft_parsing(ac, av[1], &d))
 		exit(EXIT_FAILURE);
-	printf("\nGood Map Ser\n");
+	printf("Good Map Ser\n");
 	exit(EXIT_SUCCESS);
 }
+
+/* Errors with explicit error msg */

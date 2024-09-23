@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_mat.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:20:13 by cumoncoq          #+#    #+#             */
-/*   Updated: 2024/07/04 18:53:19 by mbest            ###   ########.fr       */
+/*   Updated: 2024/09/22 18:09:02 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 # define ESC_KEY 0xff1b
 # define SPACE_KEY 0x20
 
-# include "../../libft/libft.h"
+# include "../libft/libft.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>

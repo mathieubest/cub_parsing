@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checking.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mathieu <mathieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:49:42 by mbest             #+#    #+#             */
-/*   Updated: 2024/07/04 16:26:53 by mbest            ###   ########.fr       */
+/*   Updated: 2024/09/22 18:53:30 by mathieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void get_height_and_width(int *height, int *width, char **map)
 	}
 	// printf("\nMap height: %d\nMap width: %d\n", *height, *width);
 	add_padding(*width, *height, map); //! Do this it the end end just before returning the map for playing
-	printing_map(map);
+	// printing_map(map);
 }
 
 int invalid_character(char c, char *str, int num)
@@ -86,4 +86,3 @@ void ft_check_valid_map(t_data *d)
 		exit(EXIT_FAILURE); 
 	}
 }
-

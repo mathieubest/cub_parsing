@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   trash.c                                            :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cumoncoq <cumoncoq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 14:41:39 by mbest             #+#    #+#             */
-/*   Updated: 2024/07/04 16:28:08 by mbest            ###   ########.fr       */
+/*   Created: 2023/11/13 15:28:42 by cumoncoq          #+#    #+#             */
+/*   Updated: 2023/11/14 22:36:04 by cumoncoq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//! DELETE THIS FILE
+#include "libft.h"
 
-
-#include "cub3d_mat.h"
-
-void printing_map(char **map)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-    while(*map != NULL)
-    {
-        printf("%s", *map);
-        map++;
-    }
+	t_list	*tmp;
+
+	if (!del || !lst)
+		return ;
+	while (*lst)
+	{
+		tmp = *lst;
+		*lst = (*lst)->next;
+		ft_lstdelone(tmp, del);
+	}
+	lst = NULL;
 }
