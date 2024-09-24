@@ -6,7 +6,7 @@
 /*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:03:35 by mbest             #+#    #+#             */
-/*   Updated: 2024/09/23 19:47:51 by mbest            ###   ########.fr       */
+/*   Updated: 2024/09/24 22:45:00 by mbest            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,14 @@ void ft_copy_map(int num_lines, int *div, char *filename, t_data *d)
 			d->map[j] = ft_strdup(line); //? Add to free list
 			if (d->map[j] == NULL)
 			{
-				exit(EXIT_FAILURE); //! Clean Exit
-			}
-			if (is_blank(d->map[j]))
-			{
 				err_blank_line();
 				exit(EXIT_FAILURE); //! Clean Exit
 			}
+			// if (is_blank(d->map[j]))
+			// if (d->map[j] == NULL)
+			// {
+			// 	exit(EXIT_FAILURE); //! Clean Exit
+			// }
 			i++;
 			j++;
 		}
