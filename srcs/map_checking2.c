@@ -6,7 +6,7 @@
 /*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:03:35 by mbest             #+#    #+#             */
-/*   Updated: 2024/09/24 22:45:00 by mbest            ###   ########.fr       */
+/*   Updated: 2025/01/14 10:00:36 by mbest            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,45 @@ void ft_copy_map(int num_lines, int *div, char *filename, t_data *d)
 	close(fd);
 }
 
+int validate_rbg(char *line)
+{
+	
+}
+
+void check_identifiers(char **i_map, int num_lines)
+{
+	int i;
+	int found_no = 0; //! Put this shit in a structure and have a function to init them all
+	int found_so = 0;
+	int found_we = 0;
+	int found_ea = 0;
+	int found_f = 0;
+	int found_c = 0;
+
+	int i = 0;
+	while (i < num_lines)
+	{
+		if (ft_strncmp(i_map[i], "NO ", 3) == 0)
+			found_no = 1;
+		else if (ft_strncmp(i_map[i], "SO ", 3) == 0)
+			found_so = 1;
+		else if (ft_strncmp(i_map[i], "WE ", 3) == 0)
+			found_we = 1;
+		else if (ft_strncmp(i_map[i], "EA ", 3) == 0)
+			found_ea = 1;
+		else if (ft_strncmp(i_map[i], "F ", 2) == 0)
+			found_f = validate_rgb(i_map[i]);
+		else if (ft_strncmp(i_map[i], "C ", 2) == 0)
+			found_c = validate_rgb(i_map[i]);
+		i++;
+	}
+	if (!found_no || !found_so || !found_we || !found_ea || !found_f || !found_c)
+	{
+		printf("Error: Missing or invalid identifier in the map info\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
 void	ft_copy_file(char *filename, t_data *d)
 {
 	// int fd;
@@ -112,7 +151,7 @@ void	ft_copy_file(char *filename, t_data *d)
 	// }
 	
 	ft_copy_map_info(&div, filename, d);
-	// printing_map(d->i_map);
+	printing_map(d->i_map);
 	printf("-------------------------------------------------\n");
 	ft_copy_map(num_lines, &div, filename, d);
 	// printing_map(d->map);
