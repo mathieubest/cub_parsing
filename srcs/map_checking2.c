@@ -6,7 +6,7 @@
 /*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:03:35 by mbest             #+#    #+#             */
-/*   Updated: 2025/01/14 10:00:36 by mbest            ###   ########.fr       */
+/*   Updated: 2025/01/14 15:15:20 by mbest            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,58 @@ void ft_copy_map(int num_lines, int *div, char *filename, t_data *d)
 	close(fd);
 }
 
-int validate_rbg(char *line)
+int parse_number(char **ptr)
 {
-	
+	int num;
+	int digit_count;
+
+	num = 0;
+	digit_count = 0;
+	while(**ptr && ft_isdigit(**ptr))
+	{
+		num = num * 10 + (**ptr - '0');
+		(*ptr)++;
+		digit_count++;
+		if (digit_count > 3)
+			return -1;
+	}
+	return num;
 }
 
-void check_identifiers(char **i_map, int num_lines)
+int validate_rgb(char *line)
+{
+	int r = -1; //! Put in a structure and init them
+	int g = -1;
+	int b = -1;
+	char *ptr;
+	
+	printf("LINE IN QUESTION: %s\n\n", line);
+	ptr = line;
+	ptr += 2;
+	if (ft_isdigit(*ptr))
+		r = parse_number(&ptr);
+	if (*ptr == ',')
+		ptr++;
+	else
+		return (-1);
+	if (ft_isdigit(*ptr))
+		g = parse_number(&ptr);
+	if (*ptr == ',')
+		ptr++;
+	else
+		return (-1);
+	if (ft_isdigit(*ptr))
+		b = parse_number(&ptr);
+	//! MAKE SURE IT IS NULL DIRECTLY AFTER no space, no digit, no commas etc NOTHING
+	if (*ptr != '\0')
+		return printf("There is something after the third digit\n"),(-1);
+	if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
+		return (1);
+	return (0);
+}
+
+// void check_identifiers(char **i_map, int num_lines)
+void check_identifiers(char **i_map)
 {
 	int i;
 	int found_no = 0; //! Put this shit in a structure and have a function to init them all
@@ -111,11 +157,35 @@ void check_identifiers(char **i_map, int num_lines)
 	int found_f = 0;
 	int found_c = 0;
 
-	int i = 0;
-	while (i < num_lines)
+
+    // if (i_map == NULL) {
+    //     printf("Error: i_map is NULL\n");
+    //     exit(EXIT_FAILURE);
+    // }
+
+    // if (num_lines <= 0) {
+    //     printf("Error: num_lines is invalid\n");
+    //     exit(EXIT_FAILURE);
+    // }
+
+    // printf("num_lines: %d\n", num_lines);
+
+    // for (i = 0; i < num_lines; i++) {
+    //     if (i_map[i] == NULL) {
+    //         printf("Error: i_map[%d] is NULL\n", i);
+    //         exit(EXIT_FAILURE);
+    //     }
+    //     printf("i_map[%d]: %s\n", i, i_map[i]);
+    // }
+
+	i = 0;
+	while (i_map[i] != NULL)
 	{
-		if (ft_strncmp(i_map[i], "NO ", 3) == 0)
+		// printf("YOOOOOOOOOOOO");
+		if (ft_strncmp(i_map[i], "NO ", 3) == 0){
+			// printf("Found NO: %s\n", i_map[i]);
 			found_no = 1;
+		}
 		else if (ft_strncmp(i_map[i], "SO ", 3) == 0)
 			found_so = 1;
 		else if (ft_strncmp(i_map[i], "WE ", 3) == 0)
@@ -152,6 +222,8 @@ void	ft_copy_file(char *filename, t_data *d)
 	
 	ft_copy_map_info(&div, filename, d);
 	printing_map(d->i_map);
+	// check_identifiers(d->i_map, div);
+	check_identifiers(d->i_map);
 	printf("-------------------------------------------------\n");
 	ft_copy_map(num_lines, &div, filename, d);
 	// printing_map(d->map);
