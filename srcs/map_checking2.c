@@ -6,7 +6,7 @@
 /*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:03:35 by mbest             #+#    #+#             */
-/*   Updated: 2025/01/15 14:08:46 by mbest            ###   ########.fr       */
+/*   Updated: 2025/01/15 14:53:49 by mbest            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,10 @@ int validate_rgb(char *line)
 	if (ft_isdigit(*ptr))
 		b = parse_number(&ptr);
 	//! MAKE SURE IT IS NULL DIRECTLY AFTER no space, no digit, no commas etc NOTHING
-	if (*ptr != '\n')
-		return printf("There is something after the third digit\n"),(-1);
+	if (*ptr != '\n'){
+		printf("There is something after the third digit\n");
+		return (0);
+	}
 	if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
 		return (1);
 	return (0);
@@ -198,6 +200,7 @@ void check_identifiers(char **i_map)
 			found_c = validate_rgb(i_map[i]);
 		i++;
 	}
+	printf("no: %d\nso: %d\nwe: %d\nea: %d\nf: %d\nc: %d\n", found_no, found_so, found_we, found_ea, found_f, found_c);
 	if (!found_no || !found_so || !found_we || !found_ea || !found_f || !found_c)
 	{
 		printf("Error: Missing or invalid identifier in the map info\n");
