@@ -6,7 +6,7 @@
 /*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:56:20 by mbest             #+#    #+#             */
-/*   Updated: 2024/09/23 17:10:39 by mbest            ###   ########.fr       */
+/*   Updated: 2025/01/15 14:50:30 by mbest            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ int ft_check_top_to_bottom(t_data *d, int height, int width)
 			{
 				if (d->map[i][j] == ' ')
 					wall_flag = 0;
+				if (d->map[i][j] == ' ' && wall_flag != 0 && wall_found_after_tile != 1)
+				{
+					printf("PROBLEME FOUND");
+					exit(EXIT_FAILURE);
+				}
 				if (is_player_pos(d->map, i, j))
 				{
 					if (i == 0 || i == height - 1 || j == 0 || j == width - 1)

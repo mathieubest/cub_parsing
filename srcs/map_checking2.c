@@ -6,7 +6,7 @@
 /*   By: mbest <mbest@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:03:35 by mbest             #+#    #+#             */
-/*   Updated: 2025/01/14 15:15:20 by mbest            ###   ########.fr       */
+/*   Updated: 2025/01/15 14:08:46 by mbest            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int validate_rgb(char *line)
 	if (ft_isdigit(*ptr))
 		b = parse_number(&ptr);
 	//! MAKE SURE IT IS NULL DIRECTLY AFTER no space, no digit, no commas etc NOTHING
-	if (*ptr != '\0')
+	if (*ptr != '\n')
 		return printf("There is something after the third digit\n"),(-1);
 	if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255)
 		return (1);
